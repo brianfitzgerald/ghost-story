@@ -1,0 +1,458 @@
+fileFormatVersion: 2
+guid: c30948fe748028a4689f240f4e600924
+timeCreated: 1541639284
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: alarmclock
+    100002: armchair
+    100004: bed
+    100006: book
+    100008: candlestick
+    100010: ceilingfan
+    100012: computer
+    100014: computerchair
+    100016: couch
+    100018: desk
+    100020: deskfan
+    100022: dresser
+    100024: dumbbells
+    100026: endtable
+    100028: fireplace
+    100030: fishbowl
+    100032: fridge
+    100034: fruitbowl
+    100036: grill
+    100038: headphones
+    100040: //RootNode
+    100042: lamp
+    100044: mousekeys
+    100046: plant
+    100048: printer
+    100050: shelf
+    100052: table
+    100054: toilet
+    100056: trashcan
+    100058: tub
+    100060: vanity
+    100062: window
+    100064: blade
+    100066: deskfanblades
+    100068: desktop
+    100070: flame
+    400000: alarmclock
+    400002: armchair
+    400004: bed
+    400006: book
+    400008: candlestick
+    400010: ceilingfan
+    400012: computer
+    400014: computerchair
+    400016: couch
+    400018: desk
+    400020: deskfan
+    400022: dresser
+    400024: dumbbells
+    400026: endtable
+    400028: fireplace
+    400030: fishbowl
+    400032: fridge
+    400034: fruitbowl
+    400036: grill
+    400038: headphones
+    400040: //RootNode
+    400042: lamp
+    400044: mousekeys
+    400046: plant
+    400048: printer
+    400050: shelf
+    400052: table
+    400054: toilet
+    400056: trashcan
+    400058: tub
+    400060: vanity
+    400062: window
+    400064: blade
+    400066: deskfanblades
+    400068: desktop
+    400070: flame
+    2100000: alarm
+    2100002: armchair
+    2100004: Bed
+    2100006: book
+    2100008: candlestick
+    2100010: ceilingfan
+    2100012: computerchair
+    2100014: fireplace
+    2100016: computer
+    2100018: couch
+    2100020: desk
+    2100022: deskfan
+    2100024: dresser
+    2100026: dumbbells
+    2100028: endtable
+    2100030: fishbowl
+    2100032: fridge
+    2100034: fruitbowl
+    2100036: grill
+    2100038: headphones
+    2100040: lamp
+    2100042: mousekeys
+    2100044: plant
+    2100046: printer
+    2100048: shelf
+    2100050: table
+    2100052: toilet
+    2100054: trashcan
+    2100056: tub
+    2100058: vanity
+    2100060: window
+    2100062: flame
+    2300000: alarmclock
+    2300002: armchair
+    2300004: bed
+    2300006: book
+    2300008: candlestick
+    2300010: ceilingfan
+    2300012: computer
+    2300014: computerchair
+    2300016: couch
+    2300018: desk
+    2300020: deskfan
+    2300022: dresser
+    2300024: dumbbells
+    2300026: endtable
+    2300028: fireplace
+    2300030: fishbowl
+    2300032: fridge
+    2300034: fruitbowl
+    2300036: grill
+    2300038: headphones
+    2300040: lamp
+    2300042: mousekeys
+    2300044: plant
+    2300046: printer
+    2300048: shelf
+    2300050: table
+    2300052: toilet
+    2300054: trashcan
+    2300056: tub
+    2300058: vanity
+    2300060: window
+    2300062: blade
+    2300064: deskfanblades
+    2300066: desktop
+    2300068: flame
+    2300070: //RootNode
+    3300000: alarmclock
+    3300002: armchair
+    3300004: bed
+    3300006: book
+    3300008: candlestick
+    3300010: ceilingfan
+    3300012: computer
+    3300014: computerchair
+    3300016: couch
+    3300018: desk
+    3300020: deskfan
+    3300022: dresser
+    3300024: dumbbells
+    3300026: endtable
+    3300028: fireplace
+    3300030: fishbowl
+    3300032: fridge
+    3300034: fruitbowl
+    3300036: grill
+    3300038: headphones
+    3300040: lamp
+    3300042: mousekeys
+    3300044: plant
+    3300046: printer
+    3300048: shelf
+    3300050: table
+    3300052: toilet
+    3300054: trashcan
+    3300056: tub
+    3300058: vanity
+    3300060: window
+    3300062: blade
+    3300064: deskfanblades
+    3300066: desktop
+    3300068: flame
+    3300070: //RootNode
+    4300000: alarmclock
+    4300002: armchair
+    4300004: bed
+    4300006: book
+    4300008: candlestick
+    4300010: ceilingfan
+    4300012: computerchair
+    4300014: fireplace
+    4300016: computer
+    4300018: couch
+    4300020: desk
+    4300022: deskfan
+    4300024: dresser
+    4300026: dumbbells
+    4300028: endtable
+    4300030: fishbowl
+    4300032: fridge
+    4300034: fruitbowl
+    4300036: grill
+    4300038: headphones
+    4300040: lamp
+    4300042: mousekeys
+    4300044: plant
+    4300046: printer
+    4300048: shelf
+    4300050: table
+    4300052: toilet
+    4300054: trashcan
+    4300056: tub
+    4300058: vanity
+    4300060: window
+    4300062: flame
+    4300064: blade
+    4300066: desktop
+    4300068: deskfanblades
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bed
+    second: {fileID: 2100000, guid: f8343c76f38c812439411c548c4c0cf2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: alarm
+    second: {fileID: 2100000, guid: af3d979ebdbfd0c42acf93455217cfea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: armchair
+    second: {fileID: 2100000, guid: 214ac6ba5579b4347a2c1ae5f7c25ae1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: book
+    second: {fileID: 2100000, guid: fe5cfa73cbf198d4bb3745deb1cb6f27, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: candlestick
+    second: {fileID: 2100000, guid: 0bb119664ec7c6e4583995fd64765015, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ceilingfan
+    second: {fileID: 2100000, guid: afa1052a5112f7a4191a96026260177a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: computer
+    second: {fileID: 2100000, guid: 4918f25b537f90c46823872717ef1c2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: computerchair
+    second: {fileID: 2100000, guid: 41944452320139142b5a4a531d282802, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: couch
+    second: {fileID: 2100000, guid: 4817aa8f3f94e2341a630532f657e5ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: desk
+    second: {fileID: 2100000, guid: 11408064f212e0a43bf10f9c3ebad90a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: deskfan
+    second: {fileID: 2100000, guid: 6d777d2c2e18a584e84f155e038185d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dresser
+    second: {fileID: 2100000, guid: 5ec015e0f984d71419ceb3a43d5bc833, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dumbbells
+    second: {fileID: 2100000, guid: ff0cc7a92e70f4049ab1ab2479a90eec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: endtable
+    second: {fileID: 2100000, guid: 2ae4ccd6d7f83554a9137ecd07992254, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fireplace
+    second: {fileID: 2100000, guid: f496a69550f93e848bfec6d805ea60fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fishbowl
+    second: {fileID: 2100000, guid: ebf489b53184189458b1a72732767181, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flame
+    second: {fileID: 2100000, guid: 4424503b48905864ca37050dad2bac71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fridge
+    second: {fileID: 2100000, guid: 7ed52047da9ed2a428641c81d960d21f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fruitbowl
+    second: {fileID: 2100000, guid: 762aa5c21969627458195b117722a369, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grill
+    second: {fileID: 2100000, guid: 1fb746740227dd049aa484bb437abffa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: headphones
+    second: {fileID: 2100000, guid: 32510a805f4d8df4790bfa59f24e74e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lamp
+    second: {fileID: 2100000, guid: 4e8adfbc1154aab4a98fade60ff44286, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mousekeys
+    second: {fileID: 2100000, guid: cd944f6c3dda8d242ac4e2d9d9a3dc89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plant
+    second: {fileID: 2100000, guid: ef75f191e7dd70d4cab1d907bd318ab8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: printer
+    second: {fileID: 2100000, guid: 9f000490ac2f56547a863f7cfa0fa37a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shelf
+    second: {fileID: 2100000, guid: e9873febce7d9a54a9de9e0e9952f94f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: table
+    second: {fileID: 2100000, guid: d6b2a0629c328f44295f3fb7e0fb47bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: toilet
+    second: {fileID: 2100000, guid: 96131187ada2f4140a1e77b6c9ae955a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trashcan
+    second: {fileID: 2100000, guid: 77be36ddf284cb945b9cd1055a503cd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tub
+    second: {fileID: 2100000, guid: 2d4a7efb01f59e54e92ed9cc3afff9db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: vanity
+    second: {fileID: 2100000, guid: 5ddc6082aba4403428fc242010a79eac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: window
+    second: {fileID: 2100000, guid: ed54e6739273edd4eb3fa3e268b03579, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.5
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
