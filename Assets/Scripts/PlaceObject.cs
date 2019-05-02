@@ -56,10 +56,14 @@ public class PlaceObject : MonoBehaviour
 
     private List<GameObject> placedStoryObjects = new List<GameObject>();
 
+    public const string AR_OBJECT_TAG = "ARObject";
+
     void Awake()
     {
         m_SessionOrigin = GetComponent<ARSessionOrigin>();
+        print(Screen.width);
         screenPosition = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        print(screenPosition);
         textInput.onValueChanged.AddListener(storyInputChanged);
         textInput.gameObject.SetActive(false);
         foreach (var storyObject in placeableStoryObjects)
@@ -75,11 +79,12 @@ public class PlaceObject : MonoBehaviour
 
     private void placeObject(StoryObject storyObject)
     {
-        if (m_SessionOrigin.Raycast(screenPosition, s_Hits, TrackableType.PlaneWithinPolygon))
+        var ray = ARCamera.ScreenPointToRay(screenPosition);
+        Debug.DrawRay(ray.origin, ray.direction * 10000, Color.yellow);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            Pose hitPose = s_Hits[0].pose;
-
-            var spawnedObject = Instantiate(storyObject.prefab, hitPose.position, hitPose.rotation);
+            var spawnedObject = Instantiate(storyObject.prefab, hit.point, hit.collider.transform.rotation);
             spawnedObject.AddComponent(typeof(StoryNodeController));
             var s = .25f;
             spawnedObject.transform.localScale = new Vector3(s, s, s);
@@ -116,12 +121,15 @@ public class PlaceObject : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             var hitObj = hit.transform.gameObject;
-            var h = hitObj.GetComponent<StoryNodeController>();
-            if (h != null && !GameObject.ReferenceEquals(hitObj, selectedObject))
+            var storyNodeController = hitObj.GetComponent<StoryNodeController>();
+            print(selectedObject);
+            print(hitObj);
+            print(storyNodeController);
+            if (storyNodeController != null && !GameObject.ReferenceEquals(hitObj, selectedObject) && hitObj.tag != AR_OBJECT_TAG)
             {
                 toggleStoryNodeDetail(true, hitObj);
             }
-            if (h == null && selectedObject != null && selectedObject.GetComponent<StoryNodeController>() != null)
+            else if (storyNodeController == null && selectedObject != null && selectedObject.GetComponent<StoryNodeController>() != null)
             {
                 toggleStoryNodeDetail(false);
             }
