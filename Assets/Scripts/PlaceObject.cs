@@ -58,10 +58,14 @@ public class PlaceObject : MonoBehaviour
 
     public GameObject storyObjectScrollContainer;
 
+    public GameObject playButton;
+
 
     private List<GameObject> placedStoryObjects = new List<GameObject>();
 
     public const string AR_OBJECT_TAG = "ARObject";
+
+    private bool inPlayMode = false;
 
     void Awake()
     {
@@ -86,6 +90,19 @@ public class PlaceObject : MonoBehaviour
             objectDetailParent.SetActive(false);
             Destroy(selectedObject);
         });
+        playButton.GetComponent<Button>().onClick.AddListener(delegate
+        {
+            togglePlayMode();
+        });
+    }
+
+    private void togglePlayMode()
+    {
+        inPlayMode = !inPlayMode;
+        if (inPlayMode)
+        {
+
+        }
     }
 
     private void placeObject(StoryObject storyObject)

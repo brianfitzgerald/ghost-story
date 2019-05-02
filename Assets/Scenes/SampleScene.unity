@@ -472,6 +472,7 @@ MonoBehaviour:
   - name: Fireplace
     prefab: {fileID: 1341928061073046, guid: 4297efdfec71cea49a6f339f9ecf9291, type: 3}
   storyObjectScrollContainer: {fileID: 51102661}
+  playButton: {fileID: 481051157}
 --- !u!1 &481051157
 GameObject:
   m_ObjectHideFlags: 0
