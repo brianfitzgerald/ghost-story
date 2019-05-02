@@ -44,7 +44,11 @@ public class PlaceObject : MonoBehaviour
 
     public Camera ARCamera;
 
+    public Text objectTitle;
+
     private GameObject selectedObject;
+
+    public GameObject objectDetailParent;
 
     public InputField textInput;
 
@@ -53,6 +57,7 @@ public class PlaceObject : MonoBehaviour
     public List<StoryObject> placeableStoryObjects = new List<StoryObject>();
 
     public GameObject storyObjectScrollContainer;
+
 
     private List<GameObject> placedStoryObjects = new List<GameObject>();
 
@@ -65,7 +70,7 @@ public class PlaceObject : MonoBehaviour
         screenPosition = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         print(screenPosition);
         textInput.onValueChanged.AddListener(storyInputChanged);
-        textInput.gameObject.SetActive(false);
+        objectTitle.text = "";
         foreach (var storyObject in placeableStoryObjects)
         {
             var o = Instantiate(storyObjectListItemPrefab, storyObjectScrollContainer.transform);
@@ -75,6 +80,12 @@ public class PlaceObject : MonoBehaviour
                 placeObject(storyObject);
             });
         }
+        toggleStoryNodeDetail(false);
+        objectDetailParent.transform.Find("Delete").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            objectDetailParent.SetActive(false);
+            Destroy(selectedObject);
+        });
     }
 
     private void placeObject(StoryObject storyObject)
@@ -86,6 +97,7 @@ public class PlaceObject : MonoBehaviour
         {
             var spawnedObject = Instantiate(storyObject.prefab, hit.point, hit.collider.transform.rotation);
             spawnedObject.AddComponent(typeof(StoryNodeController));
+            spawnedObject.GetComponent<StoryNodeController>().storyNode.title = storyObject.name;
             var s = .25f;
             spawnedObject.transform.localScale = new Vector3(s, s, s);
 
@@ -122,9 +134,6 @@ public class PlaceObject : MonoBehaviour
         {
             var hitObj = hit.transform.gameObject;
             var storyNodeController = hitObj.GetComponent<StoryNodeController>();
-            print(selectedObject);
-            print(hitObj);
-            print(storyNodeController);
             if (storyNodeController != null && !GameObject.ReferenceEquals(hitObj, selectedObject) && hitObj.tag != AR_OBJECT_TAG)
             {
                 toggleStoryNodeDetail(true, hitObj);
@@ -144,15 +153,16 @@ public class PlaceObject : MonoBehaviour
     {
         if (focused && hitObj != null && hitObj.GetComponent<StoryNodeController>() != null)
         {
-            print("set active");
-            textInput.gameObject.SetActive(true);
+            var nc = hitObj.GetComponent<StoryNodeController>();
+            objectDetailParent.SetActive(true);
             selectedObject = hitObj;
-            textInput.text = hitObj.GetComponent<StoryNodeController>().storyNode.text;
+            objectTitle.text = nc.storyNode.title;
+            textInput.text = nc.storyNode.text;
         }
         else
         {
-            print("set inactive");
-            textInput.gameObject.SetActive(false);
+            objectTitle.text = "";
+            objectDetailParent.SetActive(false);
             selectedObject = null;
             textInput.text = "";
         }

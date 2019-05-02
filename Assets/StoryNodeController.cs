@@ -7,13 +7,14 @@ public struct StoryNode
 {
     [TextArea]
     public string text;
+    public string title;
 }
 
 public class StoryNodeController : MonoBehaviour
 {
     public StoryNode storyNode = new StoryNode();
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
     }
