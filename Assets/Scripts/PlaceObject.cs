@@ -11,6 +11,7 @@ public struct StoryObject
 {
     public string name;
     public GameObject prefab;
+    public float overheadUIOffset;
 }
 
 [RequireComponent(typeof(ARSessionOrigin))]
@@ -49,6 +50,8 @@ public class PlaceObject : MonoBehaviour
     private GameObject selectedObject;
 
     public GameObject objectDetailParent;
+
+    public GameObject playModeOverheadPrefab;
 
     public InputField textInput;
 
@@ -94,14 +97,21 @@ public class PlaceObject : MonoBehaviour
         {
             togglePlayMode();
         });
+
     }
 
     private void togglePlayMode()
     {
+        toggleStoryNodeDetail(false);
         inPlayMode = !inPlayMode;
+        var playButtonText = playButton.transform.GetChild(0).GetComponent<Text>();
         if (inPlayMode)
         {
-
+            playButtonText.text = "Back";
+        }
+        else
+        {
+            playButtonText.text = "Play";
         }
     }
 
@@ -115,6 +125,10 @@ public class PlaceObject : MonoBehaviour
             var spawnedObject = Instantiate(storyObject.prefab, hit.point, hit.collider.transform.rotation);
             spawnedObject.AddComponent(typeof(StoryNodeController));
             spawnedObject.GetComponent<StoryNodeController>().storyNode.title = storyObject.name;
+            if (storyObject.overheadUIOffset != 0.0f)
+            {
+                spawnedObject.GetComponent<StoryNodeController>().overheadUIOffset = storyObject.overheadUIOffset;
+            }
             var s = .25f;
             spawnedObject.transform.localScale = new Vector3(s, s, s);
 
@@ -155,33 +169,59 @@ public class PlaceObject : MonoBehaviour
             {
                 toggleStoryNodeDetail(true, hitObj);
             }
-            else if (storyNodeController == null && selectedObject != null && selectedObject.GetComponent<StoryNodeController>() != null)
+            else if (storyNodeController == null && selectedObject != null && selectedObject.GetComponent<StoryNodeController>() != null && !textInput.isFocused)
             {
                 toggleStoryNodeDetail(false);
             }
         }
-        else if (selectedObject != null)
+        else if (selectedObject != null && !textInput.isFocused)
         {
             toggleStoryNodeDetail(false);
         }
     }
+
+    private const string PLAY_MODE_OVERHEAD = "Play Mode Overhead";
 
     private void toggleStoryNodeDetail(bool focused, GameObject hitObj = null)
     {
         if (focused && hitObj != null && hitObj.GetComponent<StoryNodeController>() != null)
         {
             var nc = hitObj.GetComponent<StoryNodeController>();
-            objectDetailParent.SetActive(true);
-            selectedObject = hitObj;
-            objectTitle.text = nc.storyNode.title;
-            textInput.text = nc.storyNode.text;
+            if (inPlayMode)
+            {
+                if (hitObj.transform.Find(PLAY_MODE_OVERHEAD) == null)
+                {
+                    var objectDetail = Instantiate(playModeOverheadPrefab, hitObj.transform);
+                    // objectDetail.transform.Rotate(0, 180, 0);
+                    objectDetail.transform.Translate(0, nc.overheadUIOffset, 0);
+                    objectDetail.transform.GetChild(0).Find("Title").GetComponent<Text>().text = nc.storyNode.title;
+                    objectDetail.transform.GetChild(0).Find("Text").GetComponent<Text>().text = nc.storyNode.text;
+                }
+            }
+            else
+            {
+                objectDetailParent.SetActive(true);
+                selectedObject = hitObj;
+                objectTitle.text = nc.storyNode.title;
+                textInput.text = nc.storyNode.text;
+            }
         }
         else
         {
-            objectTitle.text = "";
-            objectDetailParent.SetActive(false);
-            selectedObject = null;
-            textInput.text = "";
+            if (inPlayMode)
+            {
+                if (hitObj != null && hitObj.GetComponent<StoryNodeController>() != null && hitObj.transform.childCount > 0)
+                {
+                    Destroy(hitObj.transform.Find(PLAY_MODE_OVERHEAD));
+                }
+            }
+            else
+            {
+                objectTitle.text = "";
+                objectDetailParent.SetActive(false);
+                selectedObject = null;
+                textInput.text = "";
+            }
         }
     }
 }

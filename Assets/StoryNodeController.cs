@@ -13,6 +13,8 @@ public struct StoryNode
 public class StoryNodeController : MonoBehaviour
 {
     public StoryNode storyNode = new StoryNode();
+
+    public float overheadUIOffset = 1.2f;
     // Start is called before the first frame update
     void Awake()
     {

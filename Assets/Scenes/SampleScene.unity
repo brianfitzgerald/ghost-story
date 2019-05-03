@@ -353,6 +353,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124664359}
   m_CullTransparentMesh: 0
+--- !u!21 &170306705
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Test/Composition
+  m_Shader: {fileID: 4800000, guid: 03517ddde85a95c409e1667829bbc6fe, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &281428854
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,30 +472,42 @@ MonoBehaviour:
   ARCamera: {fileID: 1971073753}
   objectTitle: {fileID: 1029257520}
   objectDetailParent: {fileID: 500137350}
+  playModeOverheadPrefab: {fileID: 8101464719733429853, guid: a231bbf9684bf461899c45332f7012df,
+    type: 3}
   textInput: {fileID: 1055489660}
   storyObjectListItemPrefab: {fileID: 8311286717500267781, guid: ca872fe66c1ec45a08a755ede4997469,
     type: 3}
   placeableStoryObjects:
   - name: Desk
     prefab: {fileID: 1710076472701086, guid: 5be0aaf586b808648b4c194a1ae09fc5, type: 3}
+    overheadUIOffset: 2.5
   - name: Lamp
     prefab: {fileID: 1420017262694726, guid: 7503d8f476623bb4896875c1aa59b3f9, type: 3}
+    overheadUIOffset: 1
   - name: Clock
     prefab: {fileID: 1076746145594348, guid: 2a566f1afc3b867408abc3f3c3ae83cf, type: 3}
+    overheadUIOffset: 1
   - name: Fishbowl
     prefab: {fileID: 1283898717489220, guid: cba46ca8daf15524cb3b72b3f32ed14f, type: 3}
+    overheadUIOffset: 1.2
   - name: Chair
     prefab: {fileID: 1516846146993304, guid: 299d34498f9e50b43ad078f04b763d7f, type: 3}
+    overheadUIOffset: 1.5
   - name: Computer
     prefab: {fileID: 1919893147131400, guid: 7ed8b68247258b640bf680b255381278, type: 3}
+    overheadUIOffset: 1
   - name: Toilet
     prefab: {fileID: 1868546703945318, guid: aed857862f13fb4468cd3ccfdc13a0ae, type: 3}
+    overheadUIOffset: 1.8
   - name: Fridge
     prefab: {fileID: 1489152382994476, guid: 2e1dce946fcbcc545b9ffbc020ef4b8b, type: 3}
+    overheadUIOffset: 0
   - name: Trash Can
     prefab: {fileID: 1215336514085886, guid: 6a334382a29b88a40aefbf64bba1aa14, type: 3}
+    overheadUIOffset: 0
   - name: Fireplace
     prefab: {fileID: 1341928061073046, guid: 4297efdfec71cea49a6f339f9ecf9291, type: 3}
+    overheadUIOffset: 0
   storyObjectScrollContainer: {fileID: 51102661}
   playButton: {fileID: 481051157}
 --- !u!1 &481051157
@@ -1624,7 +1661,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 20
-  field of view: 60
+  field of view: 62.885315
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1719,7 +1756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RT: {fileID: 0}
-  compositionMaterial: {fileID: 0}
+  compositionMaterial: {fileID: 170306705}
 --- !u!1 &1978381182
 GameObject:
   m_ObjectHideFlags: 0
