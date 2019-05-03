@@ -483,7 +483,7 @@ MonoBehaviour:
     overheadUIOffset: 2.5
   - name: Lamp
     prefab: {fileID: 1420017262694726, guid: 7503d8f476623bb4896875c1aa59b3f9, type: 3}
-    overheadUIOffset: 1
+    overheadUIOffset: 1.5
   - name: Clock
     prefab: {fileID: 1076746145594348, guid: 2a566f1afc3b867408abc3f3c3ae83cf, type: 3}
     overheadUIOffset: 1

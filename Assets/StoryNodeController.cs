@@ -14,7 +14,7 @@ public class StoryNodeController : MonoBehaviour
 {
     public StoryNode storyNode = new StoryNode();
 
-    public float overheadUIOffset = 1.2f;
+    public float overheadUIOffset = 2.0f;
     // Start is called before the first frame update
     void Awake()
     {

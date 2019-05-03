@@ -180,7 +180,7 @@ public class PlaceObject : MonoBehaviour
         }
     }
 
-    private const string PLAY_MODE_OVERHEAD = "Play Mode Overhead";
+    private const string PLAY_MODE_OVERHEAD = "Play Mode Overhead(Clone)";
 
     private void toggleStoryNodeDetail(bool focused, GameObject hitObj = null)
     {
@@ -193,9 +193,10 @@ public class PlaceObject : MonoBehaviour
                 {
                     var objectDetail = Instantiate(playModeOverheadPrefab, hitObj.transform);
                     // objectDetail.transform.Rotate(0, 180, 0);
-                    objectDetail.transform.Translate(0, nc.overheadUIOffset, 0);
+                    objectDetail.transform.localPosition = new Vector3(objectDetail.transform.localPosition.x, nc.overheadUIOffset, objectDetail.transform.localPosition.z);
                     objectDetail.transform.GetChild(0).Find("Title").GetComponent<Text>().text = nc.storyNode.title;
                     objectDetail.transform.GetChild(0).Find("Text").GetComponent<Text>().text = nc.storyNode.text;
+                    selectedObject = hitObj;
                 }
             }
             else
@@ -210,9 +211,10 @@ public class PlaceObject : MonoBehaviour
         {
             if (inPlayMode)
             {
-                if (hitObj != null && hitObj.GetComponent<StoryNodeController>() != null && hitObj.transform.childCount > 0)
+                if (selectedObject != null && selectedObject.GetComponent<StoryNodeController>() != null && selectedObject.transform.childCount > 0)
                 {
-                    Destroy(hitObj.transform.Find(PLAY_MODE_OVERHEAD));
+                    Destroy(selectedObject.transform.Find(PLAY_MODE_OVERHEAD).gameObject);
+                    selectedObject = null;
                 }
             }
             else
