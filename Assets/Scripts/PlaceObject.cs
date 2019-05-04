@@ -21,9 +21,6 @@ public class PlaceObject : MonoBehaviour
     [Tooltip("Instantiates this prefab on a plane at the touch location.")]
     GameObject m_PlacedPrefab;
 
-    /// <summary>
-    /// The prefab to instantiate on touch.
-    /// </summary>
     public GameObject placedPrefab
     {
         get { return m_PlacedPrefab; }
@@ -31,9 +28,6 @@ public class PlaceObject : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Invoked whenever an object is placed in on a plane.
-    /// </summary>
     public static event Action onPlacedObject;
 
     ARSessionOrigin m_SessionOrigin;
@@ -41,7 +35,6 @@ public class PlaceObject : MonoBehaviour
     static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
     Vector3 screenPosition;
-
 
     public Camera ARCamera;
 
@@ -53,18 +46,25 @@ public class PlaceObject : MonoBehaviour
 
     public GameObject playModeOverheadPrefab;
 
+    public Button increaseOrderButton;
+    public Button decreaseOrderButton;
+    public Text storyOrderText;
+
     public InputField textInput;
 
     public GameObject storyObjectListItemPrefab;
-
-    public List<StoryObject> placeableStoryObjects = new List<StoryObject>();
 
     public GameObject storyObjectScrollContainer;
 
     public GameObject playButton;
 
 
+    public List<StoryObject> placeableStoryObjects = new List<StoryObject>();
+
+
     private List<GameObject> placedStoryObjects = new List<GameObject>();
+
+    private int currentPlayModeObjectIndex = 0;
 
     public const string AR_OBJECT_TAG = "ARObject";
 
@@ -78,6 +78,7 @@ public class PlaceObject : MonoBehaviour
         print(screenPosition);
         textInput.onValueChanged.AddListener(storyInputChanged);
         objectTitle.text = "";
+        storyOrderText.text = "";
         foreach (var storyObject in placeableStoryObjects)
         {
             var o = Instantiate(storyObjectListItemPrefab, storyObjectScrollContainer.transform);
@@ -97,7 +98,32 @@ public class PlaceObject : MonoBehaviour
         {
             togglePlayMode();
         });
+        increaseOrderButton.onClick.AddListener(delegate
+        {
+            changeObjectStoryOrder(true, selectedObject);
+        });
+        decreaseOrderButton.onClick.AddListener(delegate
+        {
+            changeObjectStoryOrder(false, selectedObject);
+        });
 
+    }
+
+    private void changeObjectStoryOrder(bool increase, GameObject storyObject)
+    {
+        var placedIndex = placedStoryObjects.IndexOf(storyObject);
+        var j = increase ? placedIndex + 1 : placedIndex - 1;
+        if (j > placedStoryObjects.Count - 1)
+        {
+            return;
+        }
+        if (placedIndex != -1)
+        {
+            var temp = placedStoryObjects[j];
+            placedStoryObjects[j] = placedStoryObjects[placedIndex];
+            placedStoryObjects[placedIndex] = temp;
+        }
+        updateOrderButtons(j);
     }
 
     private void togglePlayMode()
@@ -107,11 +133,21 @@ public class PlaceObject : MonoBehaviour
         var playButtonText = playButton.transform.GetChild(0).GetComponent<Text>();
         if (inPlayMode)
         {
+            objectDetailParent.SetActive(false);
             playButtonText.text = "Back";
+            for (int i = 1; i < placedStoryObjects.Count; i++)
+            {
+                placedStoryObjects[i].GetComponent<MeshRenderer>().enabled = false;
+            }
         }
         else
         {
+            objectDetailParent.SetActive(true);
             playButtonText.text = "Play";
+            for (int i = 0; i < placedStoryObjects.Count; i++)
+            {
+                placedStoryObjects[i].GetComponent<MeshRenderer>().enabled = true;
+            }
         }
     }
 
@@ -132,9 +168,9 @@ public class PlaceObject : MonoBehaviour
             var s = .25f;
             spawnedObject.transform.localScale = new Vector3(s, s, s);
 
-            toggleStoryNodeDetail(true, spawnedObject);
-
             placedStoryObjects.Add(spawnedObject);
+
+            toggleStoryNodeDetail(true, spawnedObject);
 
             if (onPlacedObject != null)
             {
@@ -159,7 +195,6 @@ public class PlaceObject : MonoBehaviour
     void Update()
     {
         var ray = ARCamera.ScreenPointToRay(screenPosition);
-        Debug.DrawRay(ray.origin, ray.direction * 10000, Color.yellow);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
@@ -178,15 +213,41 @@ public class PlaceObject : MonoBehaviour
         {
             toggleStoryNodeDetail(false);
         }
+        if (selectedObject != null & inPlayMode)
+        {
+            selectedObject.transform.GetChild(0).transform.LookAt(ARCamera.gameObject.transform);
+        }
     }
 
     private const string PLAY_MODE_OVERHEAD = "Play Mode Overhead(Clone)";
+
+    private void updateOrderButtons(int placedIndex)
+    {
+        storyOrderText.text = placedIndex.ToString();
+        if (placedIndex == 0)
+        {
+            decreaseOrderButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            decreaseOrderButton.gameObject.SetActive(true);
+        }
+        if (placedIndex >= placedStoryObjects.Count - 1)
+        {
+            increaseOrderButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            increaseOrderButton.gameObject.SetActive(true);
+        }
+    }
 
     private void toggleStoryNodeDetail(bool focused, GameObject hitObj = null)
     {
         if (focused && hitObj != null && hitObj.GetComponent<StoryNodeController>() != null)
         {
             var nc = hitObj.GetComponent<StoryNodeController>();
+            var placedIndex = placedStoryObjects.IndexOf(hitObj);
             if (inPlayMode)
             {
                 if (hitObj.transform.Find(PLAY_MODE_OVERHEAD) == null)
@@ -198,9 +259,18 @@ public class PlaceObject : MonoBehaviour
                     objectDetail.transform.GetChild(0).Find("Text").GetComponent<Text>().text = nc.storyNode.text;
                     selectedObject = hitObj;
                 }
+                if (placedIndex == currentPlayModeObjectIndex)
+                {
+                    currentPlayModeObjectIndex++;
+                    placedStoryObjects[currentPlayModeObjectIndex].GetComponent<MeshRenderer>().enabled = true;
+                }
             }
             else
             {
+                if (placedIndex != -1)
+                {
+                    updateOrderButtons(placedIndex);
+                }
                 objectDetailParent.SetActive(true);
                 selectedObject = hitObj;
                 objectTitle.text = nc.storyNode.title;
@@ -223,6 +293,7 @@ public class PlaceObject : MonoBehaviour
                 objectDetailParent.SetActive(false);
                 selectedObject = null;
                 textInput.text = "";
+                storyOrderText.text = "";
             }
         }
     }
